@@ -12,6 +12,7 @@
     "dev": "ts-node-dev --transpile-only --ignore-watch node_modules src/server.ts"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.8",
     "@types/express": "^4.17.9",
     "@types/jsdom": "^16.2.5",
     "ts-node-dev": "^1.0.0",
@@ -19,6 +20,7 @@
   },
   "dependencies": {
     "browserless": "^8.1.36",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "html-get": "^2.8.10",
     "jsdom": "^16.4.0",

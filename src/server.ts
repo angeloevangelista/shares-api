@@ -1,7 +1,9 @@
+import cors from 'cors';
 import express from 'express';
 import SharesController from './controllers/SharesController';
 
 const server = express();
+server.use(cors());
 const port = process.env.PORT || 3333;
 
 const sharesController = new SharesController();
