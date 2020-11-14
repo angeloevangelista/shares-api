@@ -7,7 +7,7 @@
   "author": "Angelo Evangelista<angeloevan.ane@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "yarn build && node build/server.js",
+    "start": "yarn build && node heroku/src/server.js",
     "build": "tsc",
     "dev": "ts-node-dev --transpile-only --ignore-watch node_modules src/server.ts"
   },
