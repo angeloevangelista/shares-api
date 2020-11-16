@@ -7,5 +7,8 @@ declare module 'html-get' {
     statusCode: number;
   }
 
-  export default function getHTML(url: string): Promise<IGetHTMLResponse>;
+  export default function getHTML(
+    url: string,
+    options?: { [key: string]: object | string | Array },
+  ): Promise<IGetHTMLResponse>;
 }
