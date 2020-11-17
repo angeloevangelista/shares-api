@@ -1,15 +1,17 @@
 import cors from 'cors';
 import express from 'express';
-import SharesController from './controllers/SharesController';
+import 'express-async-errors';
 
-const server = express();
-server.use(cors());
+import routes from './routes';
+import errorHandler from './handlers/ErrorHandler';
+
 const port = process.env.PORT || 3333;
+const server = express();
 
-const sharesController = new SharesController();
+server.use(cors());
+server.use(routes);
+server.use(errorHandler);
 
 server.listen(port, () =>
   console.log(`Server is listening at http://127.0.0.1:${port} 🚀`),
 );
-
-server.get('/shares', sharesController.show);

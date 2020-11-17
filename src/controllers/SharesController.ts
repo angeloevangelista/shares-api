@@ -3,54 +3,37 @@ import { parse } from 'node-html-parser';
 import { Request, Response } from 'express';
 
 import stringToNumber from '../utils/stringToNumber';
+import AppError from '../errors/AppError';
 
 const documentQuery = 'div.BNeawe.iBp4i.AP7Wnd div div.BNeawe.iBp4i.AP7Wnd';
 
 class SharesController {
   public async show(request: Request, response: Response): Promise<Response> {
+    console.log;
     const { sharesName } = request.query;
 
-    if (!sharesName) {
-      return response.status(400).json({
-        success: false,
-        error: 'sharesName is required.',
-        content: null,
-      });
-    }
+    if (!sharesName) throw new AppError('sharesName is required');
 
     const { html } = await getHtml(
       `https://www.google.com/search?&q=${sharesName}`,
     );
 
-    if (!html) {
-      return response.status(400).json({
-        success: false,
-        error: 'No information was found.',
-        content: null,
-      });
-    }
+    if (!html) throw new AppError('No information was found');
 
     const parsedHtml = parse(html);
 
     const lang = parsedHtml.querySelector('html')?.getAttribute('lang');
 
     if (!lang) {
-      return response.status(406).json({
-        success: false,
-        error: 'An error occurred while identifying the language.',
-        content: null,
-      });
+      throw new AppError(
+        'An error occurred while identifying the language',
+        406,
+      );
     }
 
     const spanTagWithData = parsedHtml.querySelector(documentQuery);
 
-    if (!spanTagWithData) {
-      return response.status(400).json({
-        success: false,
-        error: 'No information was found.',
-        content: null,
-      });
-    }
+    if (!spanTagWithData) throw new AppError('No information was found');
 
     let [
       priceString,
@@ -71,7 +54,6 @@ class SharesController {
 
     return response.json({
       success: true,
-      error: null,
       content: {
         price,
         scale,
