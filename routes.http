@@ -1,0 +1,22 @@
+GET http://127.0.0.1:3333/shares?sharesName=ibov HTTP/1.1
+content-type: application/json
+
+###
+
+GET http://127.0.0.1:3333/shares?sharesName=abev HTTP/1.1
+content-type: application/json
+
+###
+
+GET http://127.0.0.1:3333/shares?sharesName=petr4 HTTP/1.1
+content-type: application/json
+
+###
+
+GET http://127.0.0.1:3333/shares?sharesName=ciel3 HTTP/1.1
+content-type: application/json
+
+###
+
+GET http://127.0.0.1:3333/shares?sharesName=ibo HTTP/1.1
+content-type: application/json
